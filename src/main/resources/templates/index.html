@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/vedio/css/video-js.css}">
+    <script th:src="@{/jQuery/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/pdfobject/pdfobject.min.js}"></script>
+    <script th:src="@{/vedio/js/videojs-ie8.min.js}"></script>
+    <style>
+        .file-img{
+            width: 100%;
+            height: auto;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center">多文件在线浏览DEMO</h1>
+        <h4 class="text-center">Author:王 刚</h4>
+        <hr/>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-1">
+                <a id="preview-png" href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_png.png}" alt="png文件类型"/>
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a id="preview-jpg" href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_jpg.png}" alt="jpg文件类型" />
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a id="preview-pdf" href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_pdf.png}" alt="pdf文件类型" />
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a id="preview-doc" href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_doc.png}" alt="doc文件类型" />
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a id="preview-xls" href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_xls.png}" alt="xls文件类型" />
+                </a>
+            </div>
+            <div id="preview-ppt" class="col-md-1">
+                <a  href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_ppt.png}" alt="ppt文件类型" />
+                </a>
+            </div>
+            <div id="preview-mp3" class="col-md-1">
+                <a href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_mp3.png}" alt="mp3文件类型" />
+                </a>
+            </div>
+            <div id="preview-mp4" class="col-md-1">
+                <a href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_mp4.png}" alt="mp4文件类型" />
+                </a>
+            </div>
+            <div id="preview-avi" class="col-md-1">
+                <a href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_avi.png}" alt="avi文件类型" />
+                </a>
+            </div>
+            <div id="preview-other" class="col-md-1">
+                <a href="#">
+                    <img class="file-img" th:src="@{/custom/img/file_other.png}" alt="其他文件类型" />
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="container" class="col-md-10 col-md-offset-1">
+                <div id="png-row" class="item">
+                    <h2 class="text-center">PNG图片测试</h2>
+                    <img class="file-img" th:src="@{/custom/media/browser_png.png}"/>
+                </div>
+                <div id="jpg-row" class="item">
+                    <h2 class="text-center">JPG图片测试</h2>
+                    <img class="file-img" th:src="@{/custom/media/browser_jpg.jpg}"/>
+                </div>
+                <div id="pdf-row" class="item">
+                    <h2 class="text-center">PDF测试</h2>
+                    <div id="pdf-container"></div>
+                    <script>
+                        PDFObject.embed("/custom/media/browser_pdf.pdf","#pdf-container",{
+                            width:"100%",
+                            height:"600px",
+                            pdfOpenParams: {
+                                navpanes: 0,
+                                toolbar: 0,
+                                statusbar: 0,
+                                view: "Fit",
+                                pagemode: "thumbs",
+                                page: 1
+                            }
+                        });
+                    </script>
+                </div>
+                <div id="doc-row" class="item">
+                    <h2 class="text-center">DOC测试</h2>
+                    <iframe src="http://localhost:8081/Word2HtmlDB/springboot_%E7%AC%94%E8%AE%B0/springboot_%E7%AC%94%E8%AE%B0.html" width="100%" height="1000px"></iframe>
+                </div>
+                <div id="excel-row" class="item">
+                    <h2 class="text-center">Excel测试</h2>
+                    <iframe src="http://localhost:8081/Excel2HtmlDB/%E6%96%87%E5%BA%93/%E6%96%87%E5%BA%93.html" width="100%" height="1000px"></iframe>
+                </div>
+                <div id="ppt-row" class="item">
+                    <h2 class="text-center">PPT测试</h2>
+                    <iframe src="http://localhost:8081/PPT2HtmlDB/%E5%9C%86%E7%9A%84%E6%9E%81%E7%AE%80%E5%88%9B%E6%84%8F%E5%B0%81%E9%9D%A2%E7%AE%80%E7%BA%A6%E5%A4%A7%E6%B0%94%E9%80%9A%E7%94%A8%E5%95%86%E5%8A%A1ppt%E6%A8%A1%E6%9D%BF/%E5%9C%86%E7%9A%84%E6%9E%81%E7%AE%80%E5%88%9B%E6%84%8F%E5%B0%81%E9%9D%A2%E7%AE%80%E7%BA%A6%E5%A4%A7%E6%B0%94%E9%80%9A%E7%94%A8%E5%95%86%E5%8A%A1ppt%E6%A8%A1%E6%9D%BF.html" width="100%" height="1000px"></iframe>
+                </div>
+                <div id="avi-row" class="item">
+                    <h2 class="text-center">AVI测试</h2>
+                    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+                           poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                        <source th:src="@{/custom/media/browser_mp4.mp4}" type="video/mp4">
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
+                    <script src="http://vjs.zencdn.net/5.18.4/video.min.js"></script>
+                    <script type="text/javascript">
+                        var myPlayer = videojs('my-video');
+                        videojs("my-video").ready(function(){
+                            var myPlayer = this;
+                            myPlayer.play();
+                        });
+                    </script>
+                </div>
+                <div id="mp4-row" class="item">
+                    <h2 class="text-center">MP4测试</h2>
+                    <video th:src="@{/custom/media/browser_avi.avi}" ishivideo="true" autoplay="true" isrotate="false" autoHide="true">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    <!--初始化隐藏所有item-->
+    $(function () {
+        $(".item").addClass("hidden");
+    });
+    <!--PNG图片文件-->
+    $("#preview-png").click(function () {
+        $("#png-row").removeClass("hidden")
+            .siblings('.item').addClass("hidden");
+    });
+    <!--JPG图片文件-->
+    $("#preview-jpg").click(function () {
+        $("#jpg-row").removeClass("hidden")
+            .siblings('.item').addClass("hidden");
+    });
+    <!--PDF文件-->
+    $("#preview-pdf").click(function () {
+        $('#pdf-row').removeClass("hidden")
+            .siblings('.item').addClass('hidden');
+    })
+    <!--DOC文件-->
+    $("#preview-doc").click(function () {
+        $('#doc-row').removeClass("hidden")
+            .siblings('.item').addClass('hidden');
+    })
+    <!--Excel文件-->
+    $("#preview-xls").click(function () {
+        $('#excel-row').removeClass("hidden")
+            .siblings('.item').addClass('hidden');
+    })
+    <!--PPT文件-->
+    $("#preview-ppt").click(function () {
+        $('#ppt-row').removeClass("hidden")
+            .siblings('.item').addClass('hidden');
+    })
+    <!--AVI文件-->
+    $("#preview-avi").click(function () {
+        $('#avi-row').removeClass("hidden")
+            .siblings('.item').addClass('hidden');
+    })
+    <!--MP4文件-->
+    $("#preview-mp4").click(function () {
+        $('#mp4-row').removeClass("hidden")
+            .siblings('.item').addClass('hidden');
+    })
+</script>
